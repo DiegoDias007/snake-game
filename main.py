@@ -24,7 +24,8 @@ while running:
         game_snake.moving_direction = key_pressed
 
     body_collision = game_snake.check_body_collision()
-    if body_collision:
+    out_of_bounds = utils.check_snake_out_of_bounds(game_snake)
+    if body_collision or out_of_bounds:
         running = False
 
     fruit_eaten = utils.check_fruit_eaten(game_snake.head(), game_fruit)

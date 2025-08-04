@@ -50,3 +50,8 @@ def check_fruit_eaten(snake_head, game_fruit):
     match_y = snake_head.y == game_fruit.y
     return match_x and match_y
 
+def check_snake_out_of_bounds(game_snake):
+    snake_head = game_snake.head()
+    x_out_of_bounds = snake_head.x < 0 or snake_head.x >= variables.SCREEN_WIDTH
+    y_out_of_bounds = snake_head.y < 0 or snake_head.y >= variables.SCREEN_HEIGHT
+    return x_out_of_bounds or y_out_of_bounds
