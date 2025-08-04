@@ -12,26 +12,38 @@ pygame.display.set_caption(variables.TITLE)
 game_snake = snake.create()
 game_fruit = fruit.create(game_snake)
 
+time_since_last_move = 0
+
 running = True
 while running:
+
+    dt = clock.tick(variables.FPS)
+
+    time_since_last_move += dt
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
-    key_pressed = utils.get_key_pressed()
-    if key_pressed:
-        game_snake.moving_direction = key_pressed
+    can_make_new_move = time_since_last_move >= variables.TIME_MOVE
+    if can_make_new_move:
+        time_since_last_move = 0
 
-    body_collision = game_snake.check_body_collision()
-    out_of_bounds = utils.check_snake_out_of_bounds(game_snake)
-    if body_collision or out_of_bounds:
-        running = False
+        game_snake.move()
 
-    fruit_eaten = utils.check_fruit_eaten(game_snake.head(), game_fruit)
-    if fruit_eaten:
-        game_snake.increase_snake_size()
-        game_fruit = fruit.create(game_snake)
+        key_pressed = utils.get_key_pressed()
+        if key_pressed:
+            game_snake.moving_direction = key_pressed
+
+        body_collision = game_snake.check_body_collision()
+        out_of_bounds = utils.check_snake_out_of_bounds(game_snake)
+        if body_collision or out_of_bounds:
+            running = False
+
+        fruit_eaten = utils.check_fruit_eaten(game_snake.head(), game_fruit)
+        if fruit_eaten:
+            game_snake.increase_snake_size()
+            game_fruit = fruit.create(game_snake)
 
     screen.fill("black")
 

@@ -14,6 +14,7 @@ def get_random_coordinates():
     y_norm = y - y % variables.PIXEL_HEIGHT
     return x_norm, y_norm
 
+# TODO: Very slow if snake is large
 def get_safe_fruit_coordinates(game_snake):
     snake_coords = set()
     for game_pixel in game_snake.body:

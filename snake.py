@@ -90,6 +90,5 @@ class Snake:
         self.head().y += mov_y
 
     def draw(self, screen):
-        self.move()
         for pixel in self.body:
             pixel.draw(screen)
