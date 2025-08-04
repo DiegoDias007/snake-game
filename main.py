@@ -23,6 +23,15 @@ while running:
     if key_pressed:
         snake.moving_direction = key_pressed
 
+    body_collision = snake.check_body_collision()
+    if body_collision:
+        running = False
+
+    fruit_eaten = utils.check_fruit_eaten(snake.head(), fruit)
+    if fruit_eaten:
+        snake.increase_snake_size()
+        # update fruit position
+
     screen.fill("black")
 
     fruit.draw(screen)

@@ -32,4 +32,9 @@ def get_key_pressed():
     if keys[pygame.K_DOWN] or keys[pygame.K_s]:
         return "DOWN"
 
-    return None 
+    return None
+
+def check_fruit_eaten(snake_head, fruit):
+    match_x = snake_head.x == fruit.x
+    match_y = snake_head.y == fruit.y
+    return match_x and match_y
