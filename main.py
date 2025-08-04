@@ -1,6 +1,6 @@
 import pygame
-import pixel
 import variables
+import fruit
 import snake
 import utils
 
@@ -9,8 +9,8 @@ pygame.init()
 screen = pygame.display.set_mode((variables.SCREEN_WIDTH, variables.SCREEN_HEIGHT))
 clock = pygame.time.Clock()
 pygame.display.set_caption(variables.TITLE)
-fruit = pixel.create(variables.FRUIT_COLOR)
-snake = snake.create()
+game_snake = snake.create()
+game_fruit = fruit.create(game_snake)
 
 running = True
 while running:
@@ -21,21 +21,21 @@ while running:
 
     key_pressed = utils.get_key_pressed()
     if key_pressed:
-        snake.moving_direction = key_pressed
+        game_snake.moving_direction = key_pressed
 
-    body_collision = snake.check_body_collision()
+    body_collision = game_snake.check_body_collision()
     if body_collision:
         running = False
 
-    fruit_eaten = utils.check_fruit_eaten(snake.head(), fruit)
+    fruit_eaten = utils.check_fruit_eaten(game_snake.head(), game_fruit)
     if fruit_eaten:
-        snake.increase_snake_size()
-        # update fruit position
+        game_snake.increase_snake_size()
+        game_fruit = fruit.create(game_snake)
 
     screen.fill("black")
 
-    fruit.draw(screen)
-    snake.draw(screen)
+    game_fruit.draw(screen)
+    game_snake.draw(screen)
 
     pygame.display.flip()
 
