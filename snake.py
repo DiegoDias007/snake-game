@@ -77,7 +77,7 @@ class Snake:
         if self.moving_direction == "LEFT":
             mov_x = -variables.PIXEL_WIDTH
         if self.moving_direction == "RIGHT":
-            mov_x = variables.PIXEL_HEIGHT
+            mov_x = variables.PIXEL_WIDTH
 
         # update children
         for i in range(self.size() - 1, 0, - 1):
