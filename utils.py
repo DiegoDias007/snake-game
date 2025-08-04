@@ -1,4 +1,5 @@
 import random
+import pygame
 import variables
 
 def get_random_coordinates():
@@ -6,4 +7,29 @@ def get_random_coordinates():
     height_limit = variables.SCREEN_HEIGHT - variables.PIXEL_HEIGHT
     x = random.randint(0, width_limit)
     y = random.randint(0, height_limit)
-    return x, y
+
+    # Make sure x is a multiple of pixel_width
+    x_norm = x - x % variables.PIXEL_WIDTH
+    # Making sure y is a multiple of pixel_height
+    y_norm = y - y % variables.PIXEL_HEIGHT
+    return x_norm, y_norm
+
+def get_key_pressed():
+    keys = pygame.key.get_pressed()
+    # Left movement (A or Left Arrow)
+    if keys[pygame.K_LEFT] or keys[pygame.K_a]:
+        return "LEFT"
+
+    # Right movement (D or Right Arrow)
+    if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
+        return "RIGHT"
+
+    # Up movement (W or Up Arrow)
+    if keys[pygame.K_UP] or keys[pygame.K_w]:
+        return "UP"
+
+    # Down movement (S or Down Arrow)
+    if keys[pygame.K_DOWN] or keys[pygame.K_s]:
+        return "DOWN"
+
+    return None 

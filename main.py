@@ -2,6 +2,7 @@ import pygame
 import pixel
 import variables
 import snake
+import utils
 
 pygame.init()
 
@@ -17,6 +18,10 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+
+    key_pressed = utils.get_key_pressed()
+    if key_pressed:
+        snake.moving_direction = key_pressed
 
     screen.fill("black")
 
