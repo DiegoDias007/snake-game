@@ -1,22 +1,28 @@
-# Import the pygame library
 import pygame
+import pixel
+import utils
+import variables
 
 pygame.init()
 
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-
-pygame.display.set_caption("Snake Game!")
+screen = pygame.display.set_mode((variables.SCREEN_WIDTH, variables.SCREEN_HEIGHT))
+clock = pygame.time.Clock()
+pygame.display.set_caption(variables.TITLE)
+fruit = pixel.create(variables.FRUIT_COLOR)
 
 running = True
 while running:
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
-    screen.fill((0, 0, 0))
+    screen.fill("black")
+
+    fruit.draw(screen)
 
     pygame.display.flip()
+
+    clock.tick(variables.FPS)
 
 pygame.quit()
