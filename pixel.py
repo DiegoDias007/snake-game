@@ -18,3 +18,7 @@ class Pixel:
 
     def draw(self, screen):
         pygame.draw.rect(screen, self.color, (self.x, self.y, self.width, self.height))
+
+    def move_to(self, x, y):
+        self.x = x
+        self.y = y

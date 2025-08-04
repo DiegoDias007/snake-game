@@ -1,7 +1,7 @@
 import pygame
 import pixel
-import utils
 import variables
+import snake
 
 pygame.init()
 
@@ -9,6 +9,7 @@ screen = pygame.display.set_mode((variables.SCREEN_WIDTH, variables.SCREEN_HEIGH
 clock = pygame.time.Clock()
 pygame.display.set_caption(variables.TITLE)
 fruit = pixel.create(variables.FRUIT_COLOR)
+snake = snake.create()
 
 running = True
 while running:
@@ -20,6 +21,7 @@ while running:
     screen.fill("black")
 
     fruit.draw(screen)
+    snake.draw(screen)
 
     pygame.display.flip()
 
